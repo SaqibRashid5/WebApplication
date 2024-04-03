@@ -15,10 +15,9 @@ class CreateMovieCastTable extends Migration
     {
         Schema::create('movie_cast', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->unsignedbigInteger('movie_id');
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->unsignedbigInteger('cast_id');
-            $table->foreign('cast_id')->references('id')->on('cast')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

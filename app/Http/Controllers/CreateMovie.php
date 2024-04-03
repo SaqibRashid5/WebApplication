@@ -26,10 +26,13 @@ class CreateMovie extends Controller
             // Validate incoming request data
             $validatedData = $request->validate([
                 '*.name' => 'required|string',
+                '*.casts' => 'required|array',
                 '*.release_date' => 'required',
+                '*.director' => 'required|string',
+                '*.ratings' => 'required|array'
             ]);
 
-            $collection = collect($request->all());
+            $collection = collect($validatedData);
             $dateFixedCollection = $collection->map(function ($movie) {
                 return [
                     'name' => $movie['name'],
@@ -43,9 +46,8 @@ class CreateMovie extends Controller
             $movieObject = Movie::createBulk($movies);
 
             // Return a JSON response with the newly created resource
-            return response()->json(['message' => 'Movie/s created successfully', 'data' => $movieObject], 201);
+            return response()->json(['message' => 'Movie/s created successfully'], 201);
         } catch (\Exception $e) {
-            $this->logger->info($e->getMessage());
             return response()->json(['message' => $e->getMessage()]);
         }
     }

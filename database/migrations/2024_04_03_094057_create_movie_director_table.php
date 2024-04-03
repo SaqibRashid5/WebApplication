@@ -15,10 +15,9 @@ class CreateMovieDirectorTable extends Migration
     {
         Schema::create('movie_director', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->unsignedbigInteger('movie_id');
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->unsignedbigInteger('director_id');
-            $table->foreign('director_id')->references('id')->on('director')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
