@@ -19,7 +19,8 @@ class CreateMovieCastTable extends Migration
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->unsignedbigInteger('cast_id');
             $table->foreign('cast_id')->references('id')->on('cast')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

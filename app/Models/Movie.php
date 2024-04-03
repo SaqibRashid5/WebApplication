@@ -17,4 +17,9 @@ class Movie extends Model
         'name',
         'release_date'
     ];
+
+    public static function createBulk(array $movies)
+    {
+        return self::insert($movies);
+    }
 }

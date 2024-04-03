@@ -39,12 +39,11 @@ class CreateMovie extends Controller
 
             $movies = $dateFixedCollection->toArray();
 
-            // $validatedData['release_date'] = date('Y-m-d', strtotime($validatedData['release_date']));
-            // Create a new resource using the validated data
-            $movieObject = Movie::create($movies);
+            // Create a new resources using the validated data
+            $movieObject = Movie::createBulk($movies);
 
             // Return a JSON response with the newly created resource
-            return response()->json(['message' => 'Movie created successfully', 'data' => $movieObject], 201);
+            return response()->json(['message' => 'Movie/s created successfully', 'data' => $movieObject], 201);
         } catch (\Exception $e) {
             $this->logger->info($e->getMessage());
             return response()->json(['message' => $e->getMessage()]);
