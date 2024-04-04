@@ -43,7 +43,8 @@ class CreateMovie extends Controller
         }
     }
 
-    private function postMovieData($validatedData) {
+    private function postMovieData($validatedData)
+    {
         foreach ($validatedData as $movie) {
             $movieData = [
                 'name' => $movie['name'],

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateMovie;
+use App\Http\Controllers\RetrieveMovie;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,7 @@ Route::get('/', function () {
 });
 
 Route::post('/api/v1/movies', [CreateMovie::class, 'create']);
+
+Route::get('/api/v1/movies/{id}', [RetrieveMovie::class, 'get']);
+
+Route::get('/api/v1/movies', [RetrieveMovie::class, 'getAll']);
