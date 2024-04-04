@@ -22,4 +22,19 @@ class Movie extends Model
     {
         return self::insert($movies);
     }
+
+    public function cast()
+    {
+        return $this->hasMany(Cast::class);
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class);
+    }
+
+    public function director()
+    {
+        return $this->hasOne(Director::class);
+    }
 }
