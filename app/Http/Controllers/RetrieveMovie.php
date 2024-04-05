@@ -34,9 +34,18 @@ class RetrieveMovie extends Controller
         return response()->json($response);
     }
 
-    public function getAll(Request $request)
+    public function getAll()
     {
-        
+        $movies = Movie::with(['cast', 'director', 'rating'])->get();
+        if(!$movies) {
+            return response()->json(['message' => 'Movies not found'], 404);
+        }
+
+        $response = [];
+        foreach ($movies->toArray() as $key => $movie) {
+            $response[$key] = $this->createResponse($movie);
+        }
+        return response()->json($response);
     }
 
     private function createResponse($movie)
