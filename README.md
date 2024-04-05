@@ -2,7 +2,7 @@
 
 ### Database Schema
 
-MySQL database is used. Create database with name "webapp" and password is empty
+MySQL database is used. Create database with name "webapp" and password is empty.
 Movie has:
 - Casts
 - Director
